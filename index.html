@@ -17,13 +17,18 @@
 <span style="display:block;font-family:var(--es-font-ui);font-size:var(--es-text-sm);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6f9450">Prenotazione</span>
 <h1 style="font-family:var(--es-font-ui);font-weight:700;text-transform:uppercase;letter-spacing:0.02em;font-size:36px;color:var(--es-ivory);margin:16px 0 12px">Prenota un tavolo</h1>
 <div style="width:120px;height:3px;background:#6f9450;margin:0 0 28px"></div>
-<div style="display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:28px" id="es-fields">
 <x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Input" label="Nome" placeholder="Il tuo nome" hint-size="100%,70px"></x-import>
 <x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Input" label="Cognome" placeholder="Il tuo cognome" hint-size="100%,70px"></x-import>
 <x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Input" label="Telefono" type="tel" placeholder="+39" hint-size="100%,70px"></x-import>
+<label style="display:block;font-family:var(--es-font-ui)">
+<span style="display:block;font-family:var(--es-font-ui);font-size:var(--es-text-xs);font-weight:var(--es-weight-medium);text-transform:uppercase;letter-spacing:0.06em;color:var(--es-text-muted);margin-bottom:8px">Data</span>
+<input type="date" id="es-data" style="width:100%;padding:8px 0;background:transparent;color:var(--es-text);border:none;border-bottom:1px solid var(--es-border);border-radius:0;font-family:var(--es-font-ui);font-size:var(--es-text-md);outline:none;color-scheme:dark">
+</label>
 <x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Select" label="Persone" dc-props="{{ partySizes }}" hint-size="100%,70px"></x-import>
 <x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Select" label="Orario" dc-props="{{ times }}" hint-size="100%,70px"></x-import>
 <x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Button" hint-size="200px,52px">Invia richiesta</x-import>
+<p id="es-status" role="status" style="font-family:var(--es-font-ui);font-size:var(--es-text-sm);min-height:1.4em;margin:0"></p>
 </div>
 </div>
 <x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Footer" hint-size="100%,220px"></x-import>
@@ -38,6 +43,79 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+<iframe name="es-hidden-frame" style="display:none" title="invio prenotazione"></iframe>
+<form id="es-gas-form" method="POST" target="es-hidden-frame" style="display:none">
+<input type="hidden" name="nome">
+<input type="hidden" name="cognome">
+<input type="hidden" name="telefono">
+<input type="hidden" name="data">
+<input type="hidden" name="persone">
+<input type="hidden" name="orario">
+</form>
+<script>
+(function () {
+  // Sostituire con l'URL "/exec" ottenuto pubblicando l'Apps Script come Web App
+  // sull'account Google che ospita il calendario delle prenotazioni.
+  var GAS_URL = "INSERISCI_QUI_URL_APPS_SCRIPT";
+
+  var sending = false;
+
+  var dataEl = document.getElementById('es-data');
+  if (dataEl) {
+    dataEl.min = new Date().toISOString().slice(0, 10);
+  }
+
+  document.body.addEventListener('click', function (e) {
+    var btn = e.target.closest('button');
+    if (!btn) return;
+    handleSubmit(btn);
+  });
+
+  function handleSubmit(btn) {
+    if (sending) return;
+
+    var box = document.getElementById('es-fields');
+    var status = document.getElementById('es-status');
+    var textInputs = box.querySelectorAll('input');
+    var selects = box.querySelectorAll('select');
+
+    var nome = (textInputs[0] && textInputs[0].value || '').trim();
+    var cognome = (textInputs[1] && textInputs[1].value || '').trim();
+    var telefono = (textInputs[2] && textInputs[2].value || '').trim();
+    var data = textInputs[3] ? textInputs[3].value : '';
+    var persone = selects[0] ? selects[0].value : '';
+    var orario = selects[1] ? selects[1].value : '';
+
+    if (!nome || !cognome || !telefono || !data || !orario) {
+      status.textContent = 'Compila tutti i campi, inclusa la data, prima di inviare.';
+      status.style.color = '#c96a5a';
+      return;
+    }
+
+    if (GAS_URL.indexOf('http') !== 0) {
+      status.textContent = 'Prenotazioni online non ancora attive: chiamaci per prenotare.';
+      status.style.color = '#c96a5a';
+      return;
+    }
+
+    sending = true;
+    if (btn) btn.disabled = true;
+
+    var form = document.getElementById('es-gas-form');
+    form.action = GAS_URL;
+    form.elements.nome.value = nome;
+    form.elements.cognome.value = cognome;
+    form.elements.telefono.value = telefono;
+    form.elements.data.value = data;
+    form.elements.persone.value = persone;
+    form.elements.orario.value = orario;
+    form.submit();
+
+    status.textContent = 'Richiesta inviata! Ti contattiamo a breve per confermare.';
+    status.style.color = '#6f9450';
+  }
+})();
 </script>
 </body>
 </html>
