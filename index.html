@@ -94,6 +94,14 @@ class Component extends DCLogic {
       return;
     }
 
+    var telefonoPulito = telefono.replace(/[\s\-()]/g, '');
+    if (!/^\+?[0-9]{8,15}$/.test(telefonoPulito)) {
+      status.textContent = 'Inserisci un numero di telefono valido (solo cifre, 8-15 caratteri).';
+      status.style.color = '#c96a5a';
+      return;
+    }
+    telefono = telefonoPulito;
+
     if (GAS_URL.indexOf('http') !== 0) {
       status.textContent = 'Prenotazioni online non ancora attive: chiamaci per prenotare.';
       status.style.color = '#c96a5a';
