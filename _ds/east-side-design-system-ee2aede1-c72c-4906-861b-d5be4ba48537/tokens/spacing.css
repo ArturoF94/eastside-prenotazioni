@@ -1,0 +1,16 @@
+:root{
+  --es-space-1: 0.25rem;
+  --es-space-2: 0.5rem;
+  --es-space-3: 0.75rem;
+  --es-space-4: 1rem;
+  --es-space-6: 1.5rem;
+  --es-space-8: 2rem;
+  --es-space-12: 3rem;
+  --es-space-16: 4rem;
+  --es-space-24: 6rem;
+  
+  --es-radius-sm: 2px; /* @kind radius */
+  --es-radius-md: 4px; /* @kind radius */
+  --es-radius-pill: 999px; /* @kind radius */
+  --es-shadow: 0 14px 40px rgb(11 11 12 / 12%); /* @kind shadow */
+}

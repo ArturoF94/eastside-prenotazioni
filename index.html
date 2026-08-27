@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Reservation Page" description="Nav, reservation form, footer — built from the East Side design system" -->
+<helmet><script src="./ds-base.js"></script><style>footer img[src*="east-side-horizontal-white"]{display:none}</style></helmet>
+<div style="min-height:100vh;background:var(--es-midnight);color:var(--es-ivory)">
+<div style="display:flex;justify-content:center;padding:56px 40px 0">
+<img src="uploads/logo-east-side-documento.png" alt="East Side Pub &amp; Steakhouse" style="width:100%;max-width:360px;height:auto">
+</div>
+<div style="max-width:480px;margin:0 auto;padding:40px 40px 64px">
+<span style="display:block;font-family:var(--es-font-ui);font-size:var(--es-text-sm);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6f9450">Prenotazione</span>
+<h1 style="font-family:var(--es-font-ui);font-weight:700;text-transform:uppercase;letter-spacing:0.02em;font-size:36px;color:var(--es-ivory);margin:16px 0 12px">Prenota un tavolo</h1>
+<div style="width:120px;height:3px;background:#6f9450;margin:0 0 28px"></div>
+<div style="display:flex;flex-direction:column;gap:28px">
+<x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Input" label="Nome" placeholder="Il tuo nome" hint-size="100%,70px"></x-import>
+<x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Input" label="Cognome" placeholder="Il tuo cognome" hint-size="100%,70px"></x-import>
+<x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Input" label="Telefono" type="tel" placeholder="+39" hint-size="100%,70px"></x-import>
+<x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Select" label="Persone" dc-props="{{ partySizes }}" hint-size="100%,70px"></x-import>
+<x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Select" label="Orario" dc-props="{{ times }}" hint-size="100%,70px"></x-import>
+<x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Button" hint-size="200px,52px">Invia richiesta</x-import>
+</div>
+</div>
+<x-import component-from-global-scope="EastSideDesignSystem_ee2aed.Footer" hint-size="100%,220px"></x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      partySizes: { options: ['2', '3', '4', '5', '6+'] },
+      times: { options: ['17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45', '23:00', '23:15', '23:30'] }
+    };
+  }
+}
+</script>
+</body>
+</html>

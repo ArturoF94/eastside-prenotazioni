@@ -1,0 +1,245 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "components/forms/**",
+              "components/menu/**",
+              "components/navigation/**",
+              "ui_kits/website/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Bodoni Moda|Instrument Sans))/i]",
+        "message": "Font not provided by the design system. Available: Bodoni Moda, Instrument Sans."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|size|disabled|onClick|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: children, variant, size, disabled, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:ink|green|ghost)$/]",
+        "message": "<Button> variant must be one of 'ink' | 'green' | 'ghost'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute > JSXIdentifier[name!=/^(?:eyebrow|title|description|image|dark|key|ref|className|style|children)$/]",
+        "message": "<Card> doesn't accept that prop. Declared props: eyebrow, title, description, image, dark."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Footer'] > JSXAttribute > JSXIdentifier[name!=/^(?:address|key|ref|className|style|children)$/]",
+        "message": "<Footer> doesn't accept that prop. Declared props: address."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|placeholder|type|value|onChange|key|ref|className|style|children)$/]",
+        "message": "<Input> doesn't accept that prop. Declared props: label, placeholder, type, value, onChange."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:text|email|tel|date|number)$/]",
+        "message": "<Input> type must be one of 'text' | 'email' | 'tel' | 'date' | 'number'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MenuItemRow'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|description|price|tags|dark|key|ref|className|style|children)$/]",
+        "message": "<MenuItemRow> doesn't accept that prop. Declared props: name, description, price, tags, dark."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='NavHeader'] > JSXAttribute > JSXIdentifier[name!=/^(?:links|dark|key|ref|className|style|children)$/]",
+        "message": "<NavHeader> doesn't accept that prop. Declared props: links, dark."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionDivider'] > JSXAttribute > JSXIdentifier[name!=/^(?:dark|key|ref|className|style|children)$/]",
+        "message": "<SectionDivider> doesn't accept that prop. Declared props: dark."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Select'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|options|value|onChange|key|ref|className|style|children)$/]",
+        "message": "<Select> doesn't accept that prop. Declared props: label, options, value, onChange."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|tone|key|ref|className|style|children)$/]",
+        "message": "<Tag> doesn't accept that prop. Declared props: children, tone."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:default|green|dark)$/]",
+        "message": "<Tag> tone must be one of 'default' | 'green' | 'dark'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Button": {
+        "replaces": []
+      },
+      "Card": {
+        "replaces": []
+      },
+      "Footer": {
+        "replaces": []
+      },
+      "Input": {
+        "replaces": []
+      },
+      "MenuItemRow": {
+        "replaces": []
+      },
+      "NavHeader": {
+        "replaces": []
+      },
+      "SectionDivider": {
+        "replaces": []
+      },
+      "Select": {
+        "replaces": []
+      },
+      "Tag": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--es-accent",
+      "--es-accent-night",
+      "--es-bg",
+      "--es-border",
+      "--es-carbon",
+      "--es-container",
+      "--es-danger",
+      "--es-display",
+      "--es-duration-base",
+      "--es-duration-fast",
+      "--es-ease",
+      "--es-ember",
+      "--es-focus",
+      "--es-font-editorial",
+      "--es-font-ui",
+      "--es-gutter",
+      "--es-ivory",
+      "--es-midnight",
+      "--es-night-blue",
+      "--es-radius-md",
+      "--es-radius-pill",
+      "--es-radius-sm",
+      "--es-shadow",
+      "--es-smoke",
+      "--es-space-1",
+      "--es-space-12",
+      "--es-space-16",
+      "--es-space-2",
+      "--es-space-24",
+      "--es-space-3",
+      "--es-space-4",
+      "--es-space-6",
+      "--es-space-8",
+      "--es-success",
+      "--es-surface",
+      "--es-text",
+      "--es-text-2xl",
+      "--es-text-3xl",
+      "--es-text-lg",
+      "--es-text-md",
+      "--es-text-muted",
+      "--es-text-sm",
+      "--es-text-xl",
+      "--es-text-xs",
+      "--es-warning",
+      "--es-weight-bold",
+      "--es-weight-medium",
+      "--es-weight-regular",
+      "--es-weight-semibold"
+    ],
+    "tokenKinds": {
+      "--es-midnight": "color",
+      "--es-carbon": "color",
+      "--es-ivory": "color",
+      "--es-smoke": "color",
+      "--es-ember": "color",
+      "--es-night-blue": "color",
+      "--es-bg": "color",
+      "--es-surface": "color",
+      "--es-text": "font",
+      "--es-text-muted": "font",
+      "--es-border": "color",
+      "--es-accent": "color",
+      "--es-accent-night": "color",
+      "--es-focus": "color",
+      "--es-success": "color",
+      "--es-warning": "color",
+      "--es-danger": "color",
+      "--es-font-ui": "font",
+      "--es-font-editorial": "font",
+      "--es-weight-regular": "font",
+      "--es-weight-medium": "font",
+      "--es-weight-semibold": "font",
+      "--es-weight-bold": "font",
+      "--es-text-xs": "font",
+      "--es-text-sm": "font",
+      "--es-text-md": "font",
+      "--es-text-lg": "font",
+      "--es-text-xl": "font",
+      "--es-text-2xl": "font",
+      "--es-text-3xl": "font",
+      "--es-display": "font",
+      "--es-space-1": "spacing",
+      "--es-space-2": "spacing",
+      "--es-space-3": "spacing",
+      "--es-space-4": "spacing",
+      "--es-space-6": "spacing",
+      "--es-space-8": "spacing",
+      "--es-space-12": "spacing",
+      "--es-space-16": "spacing",
+      "--es-space-24": "spacing",
+      "--es-radius-sm": "radius",
+      "--es-radius-md": "radius",
+      "--es-radius-pill": "radius",
+      "--es-shadow": "shadow",
+      "--es-duration-fast": "other",
+      "--es-duration-base": "other",
+      "--es-ease": "other",
+      "--es-container": "spacing",
+      "--es-gutter": "spacing"
+    },
+    "fontFamilies": [
+      "Bodoni Moda",
+      "Instrument Sans"
+    ]
+  }
+}

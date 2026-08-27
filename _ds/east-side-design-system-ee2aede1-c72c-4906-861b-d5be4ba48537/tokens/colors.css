@@ -1,0 +1,106 @@
+:root {
+  /* Core colors */
+  --es-midnight: #0b0b0c;
+  --es-carbon: #171719;
+  --es-ivory: #f4f0e8;
+  --es-smoke: #b9b5ad;
+  --es-ember: #8f3b2c;
+  --es-night-blue: #23415d;
+
+  /* Semantic colors */
+  --es-bg: var(--es-ivory);
+  --es-surface: #ffffff;
+  --es-text: var(--es-midnight);
+  --es-text-muted: #5f5d59;
+  --es-border: #d9d4ca;
+  --es-accent: var(--es-ember);
+  --es-accent-night: var(--es-night-blue);
+  --es-focus: #2f6fa3;
+  --es-success: #315c45;
+  --es-warning: #8f5a1f;
+  --es-danger: #8f3b2c;
+
+  /* Typography */
+  --es-font-ui: "Instrument Sans", "Segoe UI", Arial, sans-serif;
+  --es-font-editorial: "Bodoni Moda", Georgia, serif;
+  --es-weight-regular: 400;
+  --es-weight-medium: 500;
+  --es-weight-semibold: 600;
+  --es-weight-bold: 700;
+
+  /* Type scale */
+  --es-text-xs: 0.75rem;
+  --es-text-sm: 0.875rem;
+  --es-text-md: 1rem;
+  --es-text-lg: 1.25rem;
+  --es-text-xl: 1.5rem;
+  --es-text-2xl: 2rem;
+  --es-text-3xl: clamp(2.5rem, 5vw, 4rem);
+  --es-display: clamp(3.5rem, 8vw, 7.5rem); /* @kind font */
+
+  /* Spacing: 4 px base */
+  --es-space-1: 0.25rem;
+  --es-space-2: 0.5rem;
+  --es-space-3: 0.75rem;
+  --es-space-4: 1rem;
+  --es-space-6: 1.5rem;
+  --es-space-8: 2rem;
+  --es-space-12: 3rem;
+  --es-space-16: 4rem;
+  --es-space-24: 6rem;
+
+  /* Shape and motion */
+  --es-radius-sm: 2px; /* @kind radius */
+  --es-radius-md: 4px; /* @kind radius */
+  --es-radius-pill: 999px; /* @kind radius */
+  --es-shadow: 0 14px 40px rgb(11 11 12 / 12%); /* @kind shadow */
+  --es-duration-fast: 140ms; /* @kind other */
+  --es-duration-base: 220ms; /* @kind other */
+  --es-ease: cubic-bezier(0.2, 0.7, 0.2, 1); /* @kind other */
+
+  /* Layout */
+  --es-container: 76rem; /* @kind spacing */
+  --es-gutter: clamp(1rem, 4vw, 3rem); /* @kind spacing */
+}
+
+body {
+  margin: 0;
+  color: var(--es-text);
+  background: var(--es-bg);
+  font-family: var(--es-font-ui);
+  font-size: var(--es-text-md);
+  line-height: 1.5;
+}
+
+.es-display {
+  font-family: var(--es-font-editorial);
+  font-size: var(--es-display);
+  font-weight: var(--es-weight-medium);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+
+.es-button {
+  min-height: 3rem;
+  padding: 0 var(--es-space-6);
+  border: 1px solid var(--es-midnight);
+  border-radius: var(--es-radius-sm);
+  background: var(--es-midnight);
+  color: var(--es-ivory);
+  font: var(--es-weight-semibold) var(--es-text-sm) / 1 var(--es-font-ui);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition:
+    transform var(--es-duration-fast) var(--es-ease),
+    background var(--es-duration-fast) var(--es-ease);
+}
+
+.es-button:hover {
+  transform: translateY(-1px);
+  background: var(--es-carbon);
+}
+
+.es-button:focus-visible {
+  outline: 3px solid var(--es-focus);
+  outline-offset: 3px;
+}
